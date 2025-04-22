@@ -134,3 +134,16 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Vercel deployment folder
+.vercel/
+
+# Local SQLite DB (in case you're testing locally with Supabase CLI)
+supabase/.temp/
+supabase/migrations/.snapshots/
+supabase/local/  # sometimes used for self-hosted Supabase setups
+supabase/db/
+
+# Firebase / Supabase emulators (if ever used)
+.firebase/
+.idea
