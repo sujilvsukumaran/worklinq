@@ -28,9 +28,9 @@ export default function TaskPanel({ tasks, setTasks }: Props) {
                 </button>
             </div>
             <div ref={setNodeRef}
-                 className={`space-y-3 min-h-[80px] bg-white rounded border border-dashed border-gray-300 px-4 py-2`}>
+                 className="space-y-3 min-h-[100px] bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
                 {tasks.length === 0 ? (
-                    <p className="text-sm text-gray-400 italic">Drop tasks here</p>
+                    <p className="text-sm text-gray-400 italic text-center">Drop tasks here</p>
                 ) : (
                     tasks.map ((task) => <DraggableTask key={task.id} task={task}/>)
                 )}

@@ -89,17 +89,12 @@ function MemberBlock({ member }: { member: Member }) {
     });
 
     return (
-        <div
-            ref={setNodeRef}
-            className="border rounded px-4 py-3 bg-white shadow-sm"
-        >
-            <p className="font-semibold mb-1">{member.name}</p>
+        <div ref={setNodeRef} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm space-y-3">
+            <p className="font-semibold text-lg text-gray-800">{member.name}</p>
             {member.tasks.length === 0 ? (
                 <p className="text-sm text-gray-400 italic">No tasks assigned</p>
             ) : (
-                member.tasks.map((task: Task) => (
-                    <DraggableTask key={task.id} task={task} />
-                ))
+                member.tasks.map ((task) => <DraggableTask key={task.id} task={task}/>)
             )}
         </div>
     );
