@@ -29,9 +29,9 @@ const AddMemberModal = ({ isOpen, onClose, onAdd }: Props) => {
                 <input
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => setName (e.target.value)}
                     placeholder="Member name"
-                    className="border w-full mb-4 p-2 rounded"
+                    className="w-full px-4 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                 />
 
                 <div className="flex justify-end space-x-2">

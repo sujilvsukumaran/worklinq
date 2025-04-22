@@ -9,6 +9,8 @@ import TaskPanel from '@/sections/TaskPanel';
 import ResourcePanel from '@/sections/ResourcePanel';
 import ClientOnly from '@/components/ClientOnly';
 import { Task, Member } from '@/types';
+import ThemeToggle from '@/components/ThemeToggle';
+
 
 export default function Home() {
     const router = useRouter();
@@ -18,6 +20,7 @@ export default function Home() {
     const [unassignedTasks, setUnassignedTasks] = useState<Task[]>([]);
     const [members, setMembers] = useState<Member[]>([]);
     const [activeTask, setActiveTask] = useState<Task | null>(null);
+
 
     useEffect(() => {
         const authed = localStorage.getItem('isAuthenticated');
@@ -114,6 +117,7 @@ export default function Home() {
                             {userEmail && (
                                 <span className="text-sm text-gray-500">Signed in as {userEmail}</span>
                             )}
+                            <ThemeToggle />
                             <button
                                 onClick={handleLogout}
                                 className="text-sm text-red-500 hover:text-red-700"

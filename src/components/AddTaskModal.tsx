@@ -24,37 +24,49 @@ const AddTaskModal = ({ isOpen, onClose, onAdd }: Props) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
-                <h2 className="text-lg font-semibold mb-4">Add Task</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none px-6">
+            <div
+                className="relative z-10 w-full max-w-3xl h-auto bg-white rounded-2xl shadow-2xl border border-gray-200 p-8 pointer-events-auto">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Task</h2>
 
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Task title"
-                    className="border w-full mb-4 p-2 rounded"
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Task Title</label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle (e.target.value)}
+                            placeholder="Enter task title"
+                            className="w-full px-4 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                        />
+                    </div>
 
-                <select
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value as any)}
-                    className="border w-full mb-4 p-2 rounded"
-                >
-                    <option value="OPEN">Open</option>
-                    <option value="IN_PROGRESS">In Progress</option>
-                    <option value="DONE">Done</option>
-                </select>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select
+                            value={status}
+                            onChange={(e) => setStatus (e.target.value as any)}
+                            className="w-full px-4 py-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white transition"
+                        >
+                            <option value="OPEN">Open</option>
+                            <option value="IN_PROGRESS">In Progress</option>
+                            <option value="DONE">Done</option>
+                        </select>
+                    </div>
+                </div>
 
-                <div className="flex justify-end space-x-2">
-                    <button onClick={onClose} className="px-4 py-1 border rounded">
+                <div className="mt-8 flex justify-end gap-3">
+                    <button
+                        onClick={onClose}
+                        className="px-4 py-2 text-gray-600 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition"
+                    >
                         Cancel
                     </button>
                     <button
                         onClick={handleSubmit}
-                        className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+                        className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition"
                     >
-                        Add
+                        Add Task
                     </button>
                 </div>
             </div>
