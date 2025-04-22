@@ -90,8 +90,20 @@ export default function Home() {
         <ClientOnly>
             <DndContext
                 onDragStart={(event) => {
-                    const taskId = event.active.id;
-                    const task = unassignedTasks.find((t) => t.id === taskId);
+                    const taskId = event.active.id.toString();
+
+                    // Search in both unassigned and members
+                    let task: Task | undefined = unassignedTasks.find((t) => t.id === taskId);
+
+                    if (!task) {
+                        const fromMember = members.find((m) =>
+                            m.tasks.find((t) => t.id === taskId)
+                        );
+                        if (fromMember) {
+                            task = fromMember.tasks.find((t) => t.id === taskId);
+                        }
+                    }
+
                     if (task) setActiveTask(task);
                 }}
                 onDragEnd={handleDragEnd}
