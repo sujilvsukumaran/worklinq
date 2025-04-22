@@ -1,7 +1,7 @@
 'use client';
 import TaskPanel from '@/sections/TaskPanel';
 import ResourcePanel from '@/sections/ResourcePanel';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { useState } from 'react';
 import { Task, Member } from '@/types';
 import ClientOnly from '@/components/ClientOnly';
@@ -17,6 +17,8 @@ export default function Home() {
         { id: 'm1', name: 'Akshay', tasks: [] },
         { id: 'm2', name: 'Harshit', tasks: [] },
     ]);
+
+    const [activeTask, setActiveTask] = useState<Task | null>(null);
 
     const handleDragEnd = (event: any) => {
         const { active, over } = event;
@@ -42,12 +44,26 @@ export default function Home() {
 
   return (
       <ClientOnly>
-          <DndContext onDragEnd={handleDragEnd}>
+          <DndContext
+              onDragStart={(event) => {
+                  const taskId = event.active.id;
+                  const task = unassignedTasks.find((t) => t.id === taskId);
+                  if (task) setActiveTask(task);
+              }}
+              onDragEnd={handleDragEnd}>
               <main className="min-h-screen p-6 bg-white">
                   <h1 className="text-2xl font-bold mb-4">Worklinq</h1>
                   <TaskPanel tasks={unassignedTasks} setTasks={setUnassignedTasks} />
                   <div className="my-6 border-t border-gray-300" />
                   <ResourcePanel members={members} setMembers={setMembers} />
+                  <DragOverlay>
+                      {activeTask ? (
+                          <div className="border px-4 py-2 bg-white shadow-lg rounded pointer-events-none">
+                              <p className="font-medium">{activeTask.title}</p>
+                              <p className="text-sm text-gray-500">{activeTask.status}</p>
+                          </div>
+                      ) : null}
+                  </DragOverlay>
               </main>
           </DndContext>
       </ClientOnly>
