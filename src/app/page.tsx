@@ -110,8 +110,7 @@ export default function Home() {
             >
                 <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white px-6 py-10 space-y-10">
                     <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-2xl font-bold">Worklinq</h1>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 ml-auto">
                             {userEmail && (
                                 <span className="text-sm text-gray-500">Signed in as {userEmail}</span>
                             )}
