@@ -21,27 +21,30 @@ export default function TaskPanel({ tasks, setTasks }: Props) {
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Tasks</h2>
                 <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowModal (true)}
                     className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
                 >
                     + Add Task
                 </button>
             </div>
-            <div ref={setNodeRef} className="space-y-3">
-                {tasks.map((task) => (
-                    <DraggableTask key={task.id} task={task} />
-                ))}
+            <div ref={setNodeRef}
+                 className={`space-y-3 min-h-[80px] bg-white rounded border border-dashed border-gray-300 px-4 py-2`}>
+                {tasks.length === 0 ? (
+                    <p className="text-sm text-gray-400 italic">Drop tasks here</p>
+                ) : (
+                    tasks.map ((task) => <DraggableTask key={task.id} task={task}/>)
+                )}
             </div>
             <AddTaskModal
                 isOpen={showModal}
-                onClose={() => setShowModal(false)}
+                onClose={() => setShowModal (false)}
                 onAdd={(title, status) => {
                     const newTask = {
-                        id: uuidv4(),
+                        id: uuidv4 (),
                         title,
                         status,
                     };
-                    setTasks((prev) => [...prev, newTask]);
+                    setTasks ((prev) => [...prev, newTask]);
                 }}
             />
         </section>
