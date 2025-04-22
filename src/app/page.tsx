@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
+import type { DragEndEvent } from '@dnd-kit/core';
 
 import TaskPanel from '@/sections/TaskPanel';
 import ResourcePanel from '@/sections/ResourcePanel';
@@ -30,23 +31,50 @@ export default function Home() {
         }
     }, [router]);
 
-    const handleDragEnd = (event: any) => {
+    const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
+        if (!over) return;
 
-        if (over && active.id !== over.id) {
-            const draggedTask = unassignedTasks.find((t) => t.id === active.id);
-            if (!draggedTask) return;
+        const activeId = active.id.toString();
+        const overId = over.id.toString();
 
-            setUnassignedTasks((prev) => prev.filter((t) => t.id !== active.id));
-            setMembers((prev) =>
-                prev.map((member) =>
-                    member.id === over.id
-                        ? { ...member, tasks: [...member.tasks, draggedTask] }
-                        : member
-                )
-            );
+        if (activeId === overId) return;
+
+        // 1. Find the dragged task
+        let draggedTask: Task | null = null;
+
+        const fromUnassigned = unassignedTasks.find((t) => t.id === activeId);
+        const fromMember = members.find((m) => m.tasks.find((t) => t.id === activeId));
+
+        if (fromUnassigned) {
+            draggedTask = fromUnassigned;
+        } else if (fromMember) {
+            draggedTask = fromMember.tasks.find((t) => t.id === activeId) || null;
         }
 
+        if (!draggedTask) return;
+
+        // 2. Clean up source lists
+        const newUnassignedTasks = unassignedTasks.filter((t) => t.id !== activeId);
+        const newMembers = members.map((member) => ({
+            ...member,
+            tasks: member.tasks.filter((t) => t.id !== activeId),
+        }));
+
+        // 3. Assign task to destination
+        if (overId === 'unassigned') {
+            newUnassignedTasks.push(draggedTask);
+        } else {
+            newMembers.forEach((member) => {
+                if (member.id === overId) {
+                    member.tasks.push(draggedTask!);
+                }
+            });
+        }
+
+        // 4. Apply updates
+        setUnassignedTasks(newUnassignedTasks);
+        setMembers(newMembers);
         setActiveTask(null);
     };
 

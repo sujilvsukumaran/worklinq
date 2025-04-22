@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { Member, Task } from '@/types';
+import  DraggableTask  from '@/components/DraggableTask';
 
 type Props = {
     members: Member[];
@@ -97,17 +98,7 @@ function MemberBlock({ member }: { member: Member }) {
                 <p className="text-sm text-gray-400 italic">No tasks assigned</p>
             ) : (
                 member.tasks.map((task: Task) => (
-                    <div
-                        key={task.id}
-                        className="mb-2 border rounded p-2 bg-gray-50 shadow-sm"
-                    >
-                        <p className="font-medium text-sm">{task.title}</p>
-                        <span
-                            className={`text-xs px-2 py-1 rounded-full text-black ${statusColors[task.status as keyof typeof statusColors]}`}
-                        >
-              {task.status}
-            </span>
-                    </div>
+                    <DraggableTask key={task.id} task={task} />
                 ))
             )}
         </div>
