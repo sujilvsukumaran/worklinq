@@ -1,73 +1,115 @@
 'use client';
 
-import AddMemberModal from '@/components/AddMemberModal';
-
 import { useState } from 'react';
-import { Member } from '@/types';
 import { useDroppable } from '@dnd-kit/core';
+import { Member, Task } from '@/types';
 
 type Props = {
     members: Member[];
     setMembers: React.Dispatch<React.SetStateAction<Member[]>>;
 };
 
-const ResourcePanel = ({ members, setMembers }: Props) => {
+const statusColors = {
+    OPEN: 'bg-gray-300',
+    IN_PROGRESS: 'bg-yellow-300',
+    DONE: 'bg-green-300',
+};
 
+export default function ResourcePanel({ members, setMembers }: Props) {
     const [showModal, setShowModal] = useState(false);
+    const [name, setName] = useState('');
 
-    const DroppableMember = ({ member }: { member: Member }) => {
-        const { isOver, setNodeRef } = useDroppable({ id: member.id });
+    const addMember = () => {
+        if (!name.trim()) return;
 
-        return (
-            <div
-                ref={setNodeRef}
-                className={`border rounded p-4 bg-gray-100 shadow-sm transition ${
-                    isOver ? 'bg-green-100' : ''
-                }`}
-            >
-                <h3 className="font-bold mb-2">{member.name}</h3>
-                <div className="space-y-2">
-                    {member.tasks.map((task) => (
-                        <div key={task.id} className="bg-white px-3 py-2 rounded shadow text-sm">
-                            <p className="font-medium">{task.title}</p>
-                            <p className="text-xs text-gray-500">{task.status}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
+        const newMember: Member = {
+            id: Date.now().toString(),
+            name,
+            tasks: [],
+        };
+        setMembers((prev) => [...prev, newMember]);
+        setName('');
+        setShowModal(false);
     };
 
     return (
         <section>
-            <div className="flex items-center justify-between mb-4 mt-8">
+            <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Resources</h2>
                 <button
-                    onClick={() => setShowModal (true)}
-                    className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700">
+                    onClick={() => setShowModal(true)}
+                    className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700"
+                >
                     + Add Member
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="space-y-3">
                 {members.map((member) => (
-                    <DroppableMember key={member.id} member={member} />
+                    <MemberBlock key={member.id} member={member} />
                 ))}
             </div>
-            <AddMemberModal
-                isOpen={showModal}
-                onClose={() => setShowModal(false)}
-                onAdd={(name) => {
-                    const newMember = {
-                        id: Date.now().toString(),
-                        name,
-                        tasks: [],
-                    };
-                    setMembers((prev) => [...prev, newMember]);
-                }}
-            />
+
+            {showModal && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded shadow-lg w-full max-w-sm space-y-4">
+                        <h3 className="text-lg font-semibold">Add Member</h3>
+                        <input
+                            type="text"
+                            placeholder="Enter name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-4 py-2 border rounded"
+                        />
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="text-gray-600 hover:underline"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={addMember}
+                                className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700"
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
-};
+}
 
-export default ResourcePanel;
+function MemberBlock({ member }: { member: Member }) {
+    const { setNodeRef } = useDroppable({
+        id: member.id,
+    });
+
+    return (
+        <div
+            ref={setNodeRef}
+            className="border rounded px-4 py-3 bg-white shadow-sm"
+        >
+            <p className="font-semibold mb-1">{member.name}</p>
+            {member.tasks.length === 0 ? (
+                <p className="text-sm text-gray-400 italic">No tasks assigned</p>
+            ) : (
+                member.tasks.map((task: Task) => (
+                    <div
+                        key={task.id}
+                        className="mb-2 border rounded p-2 bg-gray-50 shadow-sm"
+                    >
+                        <p className="font-medium text-sm">{task.title}</p>
+                        <span
+                            className={`text-xs px-2 py-1 rounded-full text-black ${statusColors[task.status as keyof typeof statusColors]}`}
+                        >
+              {task.status}
+            </span>
+                    </div>
+                ))
+            )}
+        </div>
+    );
+}
