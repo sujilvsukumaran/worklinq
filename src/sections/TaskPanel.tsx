@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { Task } from '@/types';
-import AddTaskModal from '@/components/AddTaskModal';
+import AddTaskModal from '@/components/AddTaskModal'
 import DraggableTask from '@/components/DraggableTask';
 import { v4 as uuidv4 } from 'uuid';
 
