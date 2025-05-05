@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from './Auth.module.css';
 
 type User = {
     email: string;
@@ -59,69 +60,46 @@ export default function AuthPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-4">
-            <form
-                onSubmit={handleSubmit}
-                className="bg-white shadow-2xl p-8 rounded-xl w-full max-w-md transition-all"
-            >
-                <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">
+        <div className={styles.wrapper}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <h1 className={styles.title}>
                     {mode === 'signin' ? 'Welcome Back 👋' : 'Create Your Account'}
                 </h1>
-                {error && (
-                    <p className="text-red-500 text-sm mb-4 text-center font-medium">
-                        {error}
-                    </p>
-                )}
+
+                {error && <p className={styles.error}>{error}</p>}
 
                 <input
                     type="email"
                     placeholder="Email"
-                    className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className={`input ${styles.input}`}
                     value={email}
-                    onChange={(e) => setEmail (e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <input
                     type="password"
                     placeholder="Password"
-                    className="w-full mb-6 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className={`input ${styles.input}`}
                     value={password}
-                    onChange={(e) => setPassword (e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <button
-                    type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
-                >
+                <button type="submit" className={`btn ${styles.button}`}>
                     {mode === 'signin' ? 'Sign In' : 'Sign Up'}
                 </button>
 
-                <div className="text-center text-sm text-gray-600 mt-6">
+                <div className={styles.toggle}>
                     {mode === 'signin' ? (
                         <>
                             Don’t have an account?{' '}
-                            <button
-                                type="button"
-                                className="text-blue-600 hover:underline font-medium"
-                                onClick={() => {
-                                    setMode ('signup');
-                                    setError ('');
-                                }}
-                            >
+                            <button type="button" onClick={() => { setMode('signup'); setError(''); }}>
                                 Sign Up
                             </button>
                         </>
                     ) : (
                         <>
                             Already registered?{' '}
-                            <button
-                                type="button"
-                                className="text-blue-600 hover:underline font-medium"
-                                onClick={() => {
-                                    setMode ('signin');
-                                    setError ('');
-                                }}
-                            >
+                            <button type="button" onClick={() => { setMode('signin'); setError(''); }}>
                                 Sign In
                             </button>
                         </>
