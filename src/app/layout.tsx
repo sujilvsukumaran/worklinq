@@ -1,6 +1,5 @@
 import './globals.css';
 import { Poppins } from 'next/font/google';
-import AppHeader from '@/components/AppHeader';
 import { ThemeProvider } from '@/context/theme-context';
 
 const poppins = Poppins({
@@ -15,7 +14,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en" className={poppins.variable}>
         <ThemeProvider>
             <body className="app-body">
-            <AppHeader />
             {children}
             </body>
         </ThemeProvider>
