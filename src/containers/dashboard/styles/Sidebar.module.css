@@ -30,10 +30,11 @@
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
-
+/*
 .navItem:hover {
     background-color: #f0f4ff;
 }
+*/
 
 .active {
     background-color: #0f72ec;
