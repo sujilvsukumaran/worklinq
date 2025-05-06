@@ -35,7 +35,10 @@ export default function Sidebar() {
                     <button
                         key={item.id}
                         className={`${styles.navItem} ${active === item.id ? styles.active : ''}`}
-                        onClick={() => setActive(item.id)}
+                        onClick={() => {
+                            console.log(`clicked on: ${item.id}`);
+                            setActive(item.id);
+                        }}
                     >
                         <span className={styles.icon}>{item.icon}</span>
                         <span className={styles.label}>{item.label}</span>
