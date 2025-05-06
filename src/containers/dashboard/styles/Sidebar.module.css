@@ -7,6 +7,8 @@
     flex-direction: column;
     gap: 2rem;
     box-shadow: 1px 0 4px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .nav {
@@ -21,7 +23,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     font-size: 1.25rem;
     font-weight: 500;
     color: #7d8592;
@@ -70,6 +72,10 @@
     color: #6b7280;
     cursor: pointer;
     background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
 }
 
 /* logout button */

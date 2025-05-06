@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 10px;
     background-color: #ffffff;
     box-sizing: border-box;
 }
@@ -12,24 +12,98 @@
 .leftGroup {
     display: flex;
     align-items: center;
-    gap: 1rem;
 }
 
 .rightGroup {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.bell {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
+/* Theme toggle switch */
+.themeToggle {
+    width: 80px;
+    height: 48px;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
     cursor: pointer;
 }
 
-.emailDisplay {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--color-text);
+.themeToggle .iconLeft,
+.themeToggle .iconRight {
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.themeToggle .iconLeft {
+    background-color: white;
+    color: #444;
+}
+
+.themeToggle .iconRight {
+    background-color: transparent;
+    color: #aaa;
+}
+
+.themeToggle.dark .iconLeft {
+    background-color: transparent;
+    color: #aaa;
+}
+
+.themeToggle.dark .iconRight {
+    background-color: white;
+    color: #444;
+}
+
+.infoBox {
+    height: 48px;
+    padding: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    //padding: 0.6rem 0.6rem;
+    border-radius: 0.5rem;
+    background-color: #f3f4f6;
+}
+
+.bellWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #d1d5db;
+    border-radius: 0.4rem;
+    background-color: white;
+}
+
+.bellIcon {
+    font-size: 1.25rem;
+    color: #444;
+}
+
+.notificationDot {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: #3b82f6;
+    border-radius: 9999px;
+}
+
+.emailText {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111827;
 }
