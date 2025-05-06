@@ -1,40 +1,34 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import styles from '../styles/Sidebar.module.css';
+import { HiOutlineHome, HiOutlineCalendar, HiOutlineViewGrid, HiOutlineUsers, HiOutlineCog } from 'react-icons/hi';
+
+const navItems = [
+    { id: 'home', label: 'Home', icon: <HiOutlineHome /> },
+    { id: 'calendar', label: 'Calendar', icon: <HiOutlineCalendar /> },
+    { id: 'projects', label: 'Projects', icon: <HiOutlineViewGrid /> },
+    { id: 'users', label: 'Users', icon: <HiOutlineUsers /> },
+    { id: 'settings', label: 'Settings', icon: <HiOutlineCog /> },
+];
 
 export default function Sidebar() {
-    const router = useRouter();
-
-    const handleLogout = () => {
-        localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('userEmail');
-        router.push('/auth');
-    };
+    const [active, setActive] = useState('home');
 
     return (
         <aside className={styles.sidebar}>
-            <h1 className={styles.logo}>WorkLinQ</h1>
-
             <nav className={styles.nav}>
-                <ul>
-                    <li className={styles.active}>🏠 Home</li>
-                    <li>📅 Calendar</li>
-                    <li>📁 Projects</li>
-                    <li>👥 Users</li>
-                    <li>⚙️ Settings</li>
-                </ul>
+                {navItems.map((item) => (
+                    <button
+                        key={item.id}
+                        className={`${styles.navItem} ${active === item.id ? styles.active : ''}`}
+                        onClick={() => setActive(item.id)}
+                    >
+                        <span className={styles.icon}>{item.icon}</span>
+                        <span className={styles.label}>{item.label}</span>
+                    </button>
+                ))}
             </nav>
-
-            <div className={styles.bottom}>
-                <select className={styles.dropdown}>
-                    <option>FE Dubai</option>
-                    <option>BE India</option>
-                </select>
-                <button onClick={handleLogout} className="btn" style={{ backgroundColor: 'red' }}>
-                    🔁 Logout
-                </button>
-            </div>
         </aside>
     );
 }
