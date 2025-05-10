@@ -1,0 +1,67 @@
+.row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    align-items: center;
+    font-size: 0.95rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+.cell {
+    padding: 0.5rem;
+}
+
+.project {
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    color: white;
+    font-size: 0.85rem;
+}
+
+.green .project {
+    background-color: #4ade80;
+    color: #065f46;
+    border: 1px solid #bbf7d0;
+}
+
+.blue .project {
+    background-color: #93c5fd;
+    color: #1e3a8a;
+    border: 1px solid #bfdbfe;
+}
+
+.gray .project {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+/* Priority badges */
+.priority {
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid;
+    display: inline-block;
+}
+
+.priority.medium {
+    color: #2563eb;
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+.priority.high {
+    color: #b91c1c;
+    border-color: #fecaca;
+    background: #fef2f2;
+}
+
+.priority.low {
+    color: #065f46;
+    border-color: #bbf7d0;
+    background: #ecfdf5;
+}

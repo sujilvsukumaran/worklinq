@@ -19,7 +19,12 @@ const navItems = [
     { id: 'settings',label: 'Settings', icon: <HiOutlineCog /> },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+    onSelect :(id:string) => void;
+    activeView: string;
+}
+
+export default function Sidebar({onSelect, activeView}: SidebarProps) {
     const [active, setActive] = useState('home');
     const [location, setLocation] = useState('FE Dubai');
 
@@ -37,6 +42,7 @@ export default function Sidebar() {
                         className={`${styles.navItem} ${active === item.id ? styles.active : ''}`}
                         onClick={() => {
                             console.log(`clicked on: ${item.id}`);
+                            onSelect(item.id);
                             setActive(item.id);
                         }}
                     >
