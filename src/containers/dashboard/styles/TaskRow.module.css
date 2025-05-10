@@ -12,16 +12,19 @@
 
 .green {
     background-color: #f0fdf4; /* soft green bg */
-    border-color: #bbf7d0;
+    border-color: #acd9c2;
 }
 
 .blue {
     background-color: #f0f4ff; /* soft blue bg */
-    border-color: #bfdbfe;
+    border-color: #a1c3d9;
+}
+.grey {
+
 }
 
 .cell {
-    padding: 0.5rem;
+    padding: 0rem;
     display: flex;
     align-items: center;
 }
@@ -30,6 +33,7 @@
     background-color: #bbf7d0;
     color: #064e3b;
     font-weight: 600;
+    padding: 0.5rem;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
 }
@@ -42,25 +46,21 @@
     border-radius: 0.75rem;
     background-color: #93c5fd;
     color: #1e3a8a;
-    border: 1px solid #bfdbfe;
 }
 
-.green .project {
-    background-color: #4ade80;
-    color: #065f46;
-    border: 1px solid #bbf7d0;
+.project-green {
+    background-color: #bbf7d0;
+    color: #064e3b;
 }
 
-.blue .project {
-    background-color: #93c5fd;
+.project-blue {
+    background-color: #bfdbfe;
     color: #1e3a8a;
-    border: 1px solid #bfdbfe;
 }
 
-.gray .project {
+.project-gray {
     background-color: #e5e7eb;
     color: #374151;
-    border: 1px solid #d1d5db;
 }
 
 /* Priority badges */
@@ -89,4 +89,8 @@
     color: #065f46;
     border-color: #bbf7d0;
     background: #ecfdf5;
+}
+
+.taskCell {
+    padding-left: 1rem; /* ⬅️ adjust spacing between project & task */
 }

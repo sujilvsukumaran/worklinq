@@ -24,10 +24,10 @@ export default function TaskRow({
                                 }: TaskRowProps) {
     return (
         <div className={`${styles.row} ${styles[color]}`}>
-            <div className={`${styles.cell} ${styles.projectCell}`}>
+            <div className={`${styles.cell} ${styles.projectCell} ${styles[`project-${color}`]}`}>
                 <span>{projectId}</span>
             </div>
-            <div className={styles.cell}>{task}</div>
+            <div className={`${styles.cell} ${styles.taskCell}`}>{task}</div>
             <div className={styles.cell}>{details}</div>
             <div className={styles.cell}>{assignee}</div>
             <div className={styles.cell}>{openDate}</div>
