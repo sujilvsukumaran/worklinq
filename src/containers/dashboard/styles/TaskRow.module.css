@@ -1,13 +1,11 @@
 .row {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    background-color: #fefefc;
-    align-items: center;
+    grid-template-columns: var(--grid-columns);
     font-size: 0.95rem;
     border-radius: 0.5rem;
-    padding: 0;
-    overflow: hidden;
+    align-items: center;
     border: 1px solid #d1d5db;
+    background-color: #fff; /* override based on color class */
 }
 
 .green {
@@ -24,9 +22,10 @@
 }
 
 .cell {
-    padding: 0rem;
     display: flex;
     align-items: center;
+    justify-content: flex-start; /* ← same as header */
+    padding: 0;
 }
 
 .projectCell {

@@ -23,6 +23,7 @@ html {
   --color-primary-hover: #0056b3;
   --color-border: #ccc;
   --color-input-bg: #fff;
+  --grid-columns: 0.8fr 2fr 1.2fr 1.2fr 1.2fr 1.2fr 1fr;
 }
 
 body.dark {
