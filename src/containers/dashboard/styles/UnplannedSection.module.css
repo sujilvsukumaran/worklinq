@@ -9,9 +9,11 @@
 }
 
 .headerRow {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 2.5rem;
 }
 
 .sectionTitle {
@@ -40,10 +42,21 @@
 }
 
 .dropdown {
-    border: none;
-    background: transparent;
-    font-size: 1.25rem;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #4b5563;
+    background: none;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.dropdown.collapsed {
+    transform: translateY(-50%) rotate(-90deg);
 }
 
 .tableHeader {
