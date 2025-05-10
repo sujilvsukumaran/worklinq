@@ -5,10 +5,11 @@
     align-items: center;
     font-size: 0.95rem;
     border-radius: 0.5rem;
-    padding: 0.1rem 0.5rem;
-    transition: background 0.2s ease;
+    padding: 0;
+    overflow: hidden;
     border: 1px solid #d1d5db;
 }
+
 .green {
     background-color: #f0fdf4; /* soft green bg */
     border-color: #bbf7d0;
@@ -21,6 +22,16 @@
 
 .cell {
     padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.projectCell {
+    background-color: #bbf7d0;
+    color: #064e3b;
+    font-weight: 600;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
 }
 
 .project {

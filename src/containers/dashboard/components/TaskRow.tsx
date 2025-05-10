@@ -24,8 +24,8 @@ export default function TaskRow({
                                 }: TaskRowProps) {
     return (
         <div className={`${styles.row} ${styles[color]}`}>
-            <div className={styles.cell}>
-                <span className={styles.project}>{projectId}</span>
+            <div className={`${styles.cell} ${styles.projectCell}`}>
+                <span>{projectId}</span>
             </div>
             <div className={styles.cell}>{task}</div>
             <div className={styles.cell}>{details}</div>
@@ -33,9 +33,9 @@ export default function TaskRow({
             <div className={styles.cell}>{openDate}</div>
             <div className={styles.cell}>{dueDate}</div>
             <div className={styles.cell}>
-                <span className={`${styles.priority} ${styles[priority.toLowerCase()]}`}>
-                    {priority}
-                </span>
+    <span className={`${styles.priority} ${styles[priority.toLowerCase ()]}`}>
+      {priority}
+    </span>
             </div>
         </div>
     );
