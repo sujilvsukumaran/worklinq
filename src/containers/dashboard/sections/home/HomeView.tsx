@@ -6,10 +6,10 @@ import PlannedSection from './PlannedSection';
 
 export default function HomeView() {
     return (
-        <div style={{ padding: '1.5rem 2rem', flex: 1, overflowY: 'auto' }}>
-            <UnplannedSection />
-            <div style={{ marginTop: '2rem' }}>
-                <PlannedSection />
+        <div style={{padding: '0.5rem 0.5rem', flex: 1, overflowY: 'auto'}}>
+            <UnplannedSection/>
+            <div style={{marginTop: '2rem'}}>
+                <PlannedSection/>
             </div>
         </div>
     );

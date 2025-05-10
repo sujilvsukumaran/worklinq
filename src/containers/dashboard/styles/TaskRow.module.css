@@ -1,11 +1,19 @@
 .row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    background-color: #fefefc;
     align-items: center;
     font-size: 0.95rem;
     border-radius: 0.5rem;
     padding: 0.5rem;
     transition: background 0.2s ease;
+}
+.green {
+    background-color: #f0fdf4; /* soft green bg */
+}
+
+.blue {
+    background-color: #f0f4ff; /* soft blue bg */
 }
 
 .cell {
