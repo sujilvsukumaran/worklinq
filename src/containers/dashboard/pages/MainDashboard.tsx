@@ -25,7 +25,7 @@ export default function MainDashboard() {
         <div className={styles.dashboardWrapper}>
             <Topbar/>
             <div className={styles.dashboardBody}>
-                <Sidebar activeView={activeView } onSelect={setActiveView} />
+                <Sidebar activeView={activeView } onSelectAction={setActiveView} />
                 <div className={styles.dashboardContent}>
                     {renderContent()}
                 </div>

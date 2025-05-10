@@ -20,11 +20,11 @@ const navItems = [
 ];
 
 interface SidebarProps {
-    onSelect :(id:string) => void;
+    onSelectAction :(id:string) => void;
     activeView: string;
 }
 
-export default function Sidebar({onSelect, activeView}: SidebarProps) {
+export default function Sidebar({onSelectAction, activeView}: SidebarProps) {
     const [active, setActive] = useState('home');
     const [location, setLocation] = useState('FE Dubai');
 
@@ -42,7 +42,7 @@ export default function Sidebar({onSelect, activeView}: SidebarProps) {
                         className={`${styles.navItem} ${active === item.id ? styles.active : ''}`}
                         onClick={() => {
                             console.log(`clicked on: ${item.id}`);
-                            onSelect(item.id);
+                            onSelectAction(item.id);
                             setActive(item.id);
                         }}
                     >
